@@ -47,6 +47,30 @@ public class MyArrayListTest {
     }
 
     @Test
+    public void addToArrayAtIndexInsertsNumberAtSpecifiedIndex(){
+        MyArrayList myArrayList = new MyArrayList();
+        myArrayList.addToArrayAtIndex(2, 1);
+
+        int[] expectedResult = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0};
+        int[] actualResult = myArrayList.getAsPrimitiveArray();
+
+        assertArrayEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void addToArrayAtIndexIncreasesArraySize(){
+        MyArrayList myArrayList = new MyArrayList();
+        myArrayList.addToArrayAtIndex(2, 1);
+
+        int expectedResult = 3;
+
+        int actualResult = myArrayList.getArraySize();
+
+        assertEquals(expectedResult, actualResult);
+
+    }
+
+    @Test
     public void getFromArraygetsIntegerFromIndexInArray(){
         MyArrayList myArrayList = new MyArrayList();
         myArrayList.addToArray(1);

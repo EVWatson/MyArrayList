@@ -17,6 +17,13 @@ public class MyArrayList {
         arraySize++;
     }
 
+    public void addToArrayAtIndex(int index, int number){
+        this.numberArray[index] = number;
+        arraySize = index + 1;
+        // update array
+        //update size
+    }
+
     public void removeIndex(int index){
         for(int i = index; i < this.numberArray.length; i++){
             if(i+1 < this.numberArray.length) {
