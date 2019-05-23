@@ -1,14 +1,27 @@
 public class MyArrayList {
 
     private int[] numberArray;
-    private int arrayContentsTracker;
+    private int arraySize;
 
     public MyArrayList(){
         this.numberArray = new int[10];
-        this.arrayContentsTracker = 0;
+        this.arraySize = 0;
     }
 
     public int getArraySize(){
-       return this.arrayContentsTracker;
+       return this.arraySize;
+    }
+
+    public void addToArray(int number){
+        this.numberArray[arraySize] = number;
+        arraySize++;
+    }
+
+    public int getFromArray(int index){
+        return this.numberArray[index];
+    }
+
+    public int[] getAsPrimitiveArray(){
+        return this.numberArray;
     }
 }
