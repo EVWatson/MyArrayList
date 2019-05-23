@@ -58,4 +58,25 @@ public class MyArrayListTest {
         int actualResult = myArrayList.getFromArray(3);
         assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    public void removeFromArrayRemovesValue(){
+        MyArrayList myArrayList = new MyArrayList();
+        myArrayList.addToArray(1);
+        myArrayList.addToArray(2);
+        myArrayList.addToArray(3);
+        myArrayList.addToArray(4);
+        myArrayList.addToArray(5);
+        myArrayList.addToArray(6);
+        myArrayList.addToArray(7);
+        myArrayList.addToArray(8);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(10);
+
+        myArrayList.removeIndex(2);
+        int[] expectedResult = {1, 2, 4, 5, 6, 7, 8, 9, 10, 0};
+        int[] actualResult = myArrayList.getAsPrimitiveArray();
+
+        assertArrayEquals(expectedResult, actualResult);
+    }
 }
