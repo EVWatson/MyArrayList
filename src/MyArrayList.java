@@ -9,19 +9,45 @@ public class MyArrayList {
     }
 
     public int getArraySize(){
-       return this.arraySize;
+
+        return this.arraySize;
     }
+
+    private void expandArray(int numberOfSpaces){
+        int[] tempArray = new int[this.numberArray.length + numberOfSpaces];
+        for(int index = 0; index < this.numberArray.length; index++){
+            tempArray[index] = this.numberArray[index];
+        }
+        this.numberArray = tempArray;
+    }
+
 
     public void addToArray(int number){
-        this.numberArray[arraySize] = number;
-        arraySize++;
+        if(this.arraySize >= this.numberArray.length) {
+            expandArray(1);
+            this.numberArray[arraySize] = number;
+            arraySize++;
+        } else {
+            this.numberArray[arraySize] = number;
+            this.arraySize++;
+        }
     }
 
+    public void swapIndices (int index1, int index2){
+        int temp = this.numberArray[index2];
+        this.numberArray[index2] = this.numberArray[index1];
+        this.numberArray[index1] = temp;
+    }
+
+
+//    add at any index outside the scope. how many spaces will need to be passed?
     public void addToArrayAtIndex(int index, int number){
         this.numberArray[index] = number;
-        arraySize = index + 1;
-        // update array
-        //update size
+
+        if(index > this.getArraySize()){
+            this.arraySize = index + 1;
+        }
+
     }
 
     public void removeIndex(int index){
@@ -33,12 +59,14 @@ public class MyArrayList {
                 this.numberArray[i] = 0;
             }
         }
-
+        arraySize --;
     }
 
     public int getFromArray(int index){
         return this.numberArray[index];
     }
+
+//    remove this function, get tests to pass without it. use get instead where possible.
 
     public int[] getAsPrimitiveArray(){
         return this.numberArray;

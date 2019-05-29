@@ -47,6 +47,64 @@ public class MyArrayListTest {
     }
 
     @Test
+    public void whenThereAreNoEmptySpacesAddToArrayDynamicallyIncreasesArrayBoundarySize(){
+        MyArrayList myArrayList = new MyArrayList();
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(8);
+
+        int expectedResult = 11;
+        int actualResult = myArrayList.getArraySize();
+
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void whenThereAreNoEmptySpacesAddToArrayDynamicallyAddsNumberToIncreasedArray(){
+        MyArrayList myArrayList = new MyArrayList();
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(8);
+
+        int[] expectedResult = {9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8};
+        int[] actualResult = myArrayList.getAsPrimitiveArray();
+
+        assertArrayEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void whenGivenTwoIndiciesSwapTwoIndiciesReturnsTheSameArrayWithThoseIndiciesSwapped(){
+        MyArrayList myArrayList = new MyArrayList();
+        myArrayList.addToArray(1);
+        myArrayList.addToArray(2);
+        myArrayList.addToArray(3);
+        myArrayList.addToArray(4);
+
+        myArrayList.swapIndices(1,2);
+
+        int[] expectedResult = {1,3,2,4,0,0,0,0,0,0};
+        int[] actualResult = myArrayList.getAsPrimitiveArray();
+
+        assertArrayEquals(expectedResult, actualResult);
+    }
+
+    @Test
     public void addToArrayAtIndexInsertsNumberAtSpecifiedIndex(){
         MyArrayList myArrayList = new MyArrayList();
         myArrayList.addToArrayAtIndex(2, 1);
@@ -58,11 +116,29 @@ public class MyArrayListTest {
     }
 
     @Test
-    public void addToArrayAtIndexIncreasesArraySize(){
+    public void whenIndexIsGreaterThanArraySizeAddToArrayAtIndexIncreasesArraySize(){
         MyArrayList myArrayList = new MyArrayList();
         myArrayList.addToArrayAtIndex(2, 1);
 
         int expectedResult = 3;
+
+        int actualResult = myArrayList.getArraySize();
+
+        assertEquals(expectedResult, actualResult);
+
+    }
+
+    @Test
+    public void whenIndexIsNotGreaterThanArraySizeAddToArrayAtIndexDoesNotIncreaseArraySize(){
+        MyArrayList myArrayList = new MyArrayList();
+        myArrayList.addToArray(8);
+        myArrayList.addToArray(8);
+        myArrayList.addToArray(8);
+        myArrayList.addToArray(8);
+
+        myArrayList.addToArrayAtIndex(2, 1);
+
+        int expectedResult = 4;
 
         int actualResult = myArrayList.getArraySize();
 
@@ -102,5 +178,27 @@ public class MyArrayListTest {
         int[] actualResult = myArrayList.getAsPrimitiveArray();
 
         assertArrayEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void removeFromArrayDecreasesArraySize(){
+        MyArrayList myArrayList = new MyArrayList();
+        myArrayList.addToArray(1);
+        myArrayList.addToArray(2);
+        myArrayList.addToArray(3);
+        myArrayList.addToArray(4);
+        myArrayList.addToArray(5);
+        myArrayList.addToArray(6);
+        myArrayList.addToArray(7);
+        myArrayList.addToArray(8);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(10);
+
+        myArrayList.removeIndex(3);
+
+        int expectedResult = 9;
+        int actualResult = myArrayList.getArraySize();
+
+        assertEquals(expectedResult, actualResult);
     }
 }
