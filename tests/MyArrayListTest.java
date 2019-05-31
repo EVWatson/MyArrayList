@@ -147,6 +147,23 @@ public class MyArrayListTest {
     }
 
     @Test
+    public void whenInsertingNumberAtSpecifiedIndexOutsideArrayBoundsArrayIncreasesDynamically(){
+        MyArrayList myArrayList = new MyArrayList();
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+
+        myArrayList.addToArrayAtIndex(11, 8);
+
+        int[] expectedResult = {9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 8};
+        int[] actualResult = myArrayList.getAsPrimitiveArray();
+
+        assertArrayEquals(expectedResult, actualResult);
+    }
+
+    @Test
     public void getFromArraygetsIntegerFromIndexInArray(){
         MyArrayList myArrayList = new MyArrayList();
         myArrayList.addToArray(1);

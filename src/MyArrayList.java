@@ -33,21 +33,25 @@ public class MyArrayList {
         }
     }
 
+//    add at any index outside the scope. how many spaces will need to be passed?
+    public void addToArrayAtIndex(int index, int number){
+        if(index > this.numberArray.length) {
+            for(int i = this.numberArray.length; i < index; i++) {
+                expandArray(1);
+                this.arraySize = index + 1;
+            }
+        }
+        this.numberArray[index] = number;
+
+//        if(index > this.getArraySize()) {
+//            this.arraySize = index + 1;
+//           }
+    }
+
     public void swapIndices (int index1, int index2){
         int temp = this.numberArray[index2];
         this.numberArray[index2] = this.numberArray[index1];
         this.numberArray[index1] = temp;
-    }
-
-
-//    add at any index outside the scope. how many spaces will need to be passed?
-    public void addToArrayAtIndex(int index, int number){
-        this.numberArray[index] = number;
-
-        if(index > this.getArraySize()){
-            this.arraySize = index + 1;
-        }
-
     }
 
     public void removeIndex(int index){
