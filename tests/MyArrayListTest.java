@@ -13,7 +13,7 @@ public class MyArrayListTest {
     }
 //** This test is possibly redundant now
     @Test
-    public void addToArrayAddsNewNumberToArray(){
+    public void addToArrayOnAnEmptyArrayAddsNewNumberToArray(){
         MyArrayList myArrayList = new MyArrayList();
         myArrayList.addToArray(1);
         int expectedResult = 1;
@@ -21,7 +21,6 @@ public class MyArrayListTest {
         assertEquals(expectedResult, actualResult);
     }
 
-    //** is there a better way to test this? perhaps with already established array, then adding arry. or showing what index new number has been added to?
     @Test
     public void addToArrayAddsNewNumberToArrayInEmptySpot(){
         MyArrayList myArrayList = new MyArrayList();
@@ -65,7 +64,7 @@ public class MyArrayListTest {
         assertEquals(expectedResult, actualResult);
     }
 
-    //**
+
     @Test
     public void whenThereAreNoEmptySpacesAddToArrayDynamicallyAddsNumberToIncreasedArray(){
         MyArrayList myArrayList = new MyArrayList();
@@ -87,7 +86,6 @@ public class MyArrayListTest {
         assertEquals(expectedResult, actualResult);
     }
 
-    //** This works, but is it confusing?
     @Test
     public void whenGivenTwoIndicesSwapTwoIndicesReturnsTheSameArrayWithThoseIndicesSwapped(){
         MyArrayList myArrayList = new MyArrayList();

@@ -2,6 +2,7 @@ public class MyArrayList {
 
     private int[] numberArray;
     private int arraySize;
+//    default/setting array size
 
     public MyArrayList(){
         this.numberArray = new int[10];
@@ -34,17 +35,28 @@ public class MyArrayList {
     }
 
 //    add at any index outside the scope. how many spaces will need to be passed?
+//    public void addToArrayAtIndex(int index, int number){
+////        if(index > this.numberArray.length) {
+////            for(int i = this.numberArray.length; i <= index; i++) {
+////                expandArray(1);
+////            }
+////        }
+////        this.numberArray[index] = number;
+////
+////        if(index > this.arraySize) {
+////            this.arraySize = index + 1;
+////           }
+////    }
+
     public void addToArrayAtIndex(int index, int number){
         if(index > this.numberArray.length) {
-            for(int i = this.numberArray.length; i <= index; i++) {
-                expandArray(1);
-            }
+                expandArray((index +1) - this.numberArray.length);
         }
         this.numberArray[index] = number;
 
         if(index > this.arraySize) {
             this.arraySize = index + 1;
-           }
+        }
     }
 
     public void swapIndices (int index1, int index2){
