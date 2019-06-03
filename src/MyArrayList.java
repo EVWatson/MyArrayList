@@ -71,7 +71,7 @@ public class MyArrayList {
 
 //    remove this function, get tests to pass without it. use get instead where possible.
 
-    public int[] getAsPrimitiveArray(){
+    private int[] getAsPrimitiveArray(){
         return this.numberArray;
     }
 }

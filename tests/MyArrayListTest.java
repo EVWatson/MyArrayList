@@ -7,21 +7,32 @@ public class MyArrayListTest {
     @Test
     public void whenSizeIsCalledOnMyArrayListReturnsNumberOfItemsCurrentlyStored(){
         MyArrayList myArrayList = new MyArrayList();
-
         int expectedResult = 0;
-
         int actualResult = myArrayList.getArraySize();
-
         assertEquals(expectedResult, actualResult);
     }
-
+//** This test is possibly redundant now
     @Test
     public void addToArrayAddsNewNumberToArray(){
         MyArrayList myArrayList = new MyArrayList();
         myArrayList.addToArray(1);
-        int[] expectedResult = {1, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        int[] actualResult = myArrayList.getAsPrimitiveArray();
-        assertArrayEquals(expectedResult, actualResult);
+        int expectedResult = 1;
+        int actualResult = myArrayList.getFromArray(0);
+        assertEquals(expectedResult, actualResult);
+    }
+
+    //** is there a better way to test this? perhaps with already established array, then adding arry. or showing what index new number has been added to?
+    @Test
+    public void addToArrayAddsNewNumberToArrayInEmptySpot(){
+        MyArrayList myArrayList = new MyArrayList();
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(9);
+        myArrayList.addToArray(8);
+        int expectedResult = 8;
+        int actualResult = myArrayList.getFromArray(4);
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
@@ -31,19 +42,6 @@ public class MyArrayListTest {
         int expectedResult = 1;
         int actualResult = myArrayList.getArraySize();
         assertEquals(expectedResult, actualResult);
-    }
-
-    @Test
-    public void addToArrayAddsNewNumberToArrayInEmptySpot(){
-        MyArrayList myArrayList = new MyArrayList();
-        myArrayList.addToArray(9);
-        myArrayList.addToArray(9);
-        myArrayList.addToArray(9);
-        myArrayList.addToArray(9);
-        myArrayList.addToArray(9);
-        int[] expectedResult = {9, 9, 9, 9, 9, 0, 0, 0, 0, 0};
-        int[] actualResult = myArrayList.getAsPrimitiveArray();
-        assertArrayEquals(expectedResult, actualResult);
     }
 
     @Test
@@ -67,6 +65,7 @@ public class MyArrayListTest {
         assertEquals(expectedResult, actualResult);
     }
 
+    //**
     @Test
     public void whenThereAreNoEmptySpacesAddToArrayDynamicallyAddsNumberToIncreasedArray(){
         MyArrayList myArrayList = new MyArrayList();
@@ -82,14 +81,15 @@ public class MyArrayListTest {
         myArrayList.addToArray(9);
         myArrayList.addToArray(8);
 
-        int[] expectedResult = {9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8};
-        int[] actualResult = myArrayList.getAsPrimitiveArray();
+        int expectedResult = 8;
+        int actualResult = myArrayList.getFromArray(10);
 
-        assertArrayEquals(expectedResult, actualResult);
+        assertEquals(expectedResult, actualResult);
     }
 
+    //** This works, but is it confusing?
     @Test
-    public void whenGivenTwoIndiciesSwapTwoIndiciesReturnsTheSameArrayWithThoseIndiciesSwapped(){
+    public void whenGivenTwoIndicesSwapTwoIndicesReturnsTheSameArrayWithThoseIndicesSwapped(){
         MyArrayList myArrayList = new MyArrayList();
         myArrayList.addToArray(1);
         myArrayList.addToArray(2);
@@ -98,34 +98,31 @@ public class MyArrayListTest {
 
         myArrayList.swapIndices(1,2);
 
-        int[] expectedResult = {1,3,2,4,0,0,0,0,0,0};
-        int[] actualResult = myArrayList.getAsPrimitiveArray();
+        int[] expectedResult = {3,2};
+        int[] actualResult = {myArrayList.getFromArray(1), myArrayList.getFromArray(2)};
 
         assertArrayEquals(expectedResult, actualResult);
     }
 
+    //**
     @Test
     public void addToArrayAtIndexInsertsNumberAtSpecifiedIndex(){
         MyArrayList myArrayList = new MyArrayList();
         myArrayList.addToArrayAtIndex(2, 1);
 
-        int[] expectedResult = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0};
-        int[] actualResult = myArrayList.getAsPrimitiveArray();
+        int expectedResult = 1;
+        int actualResult = myArrayList.getFromArray(2);
 
-        assertArrayEquals(expectedResult, actualResult);
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
     public void whenIndexIsGreaterThanArraySizeAddToArrayAtIndexIncreasesArraySize(){
         MyArrayList myArrayList = new MyArrayList();
         myArrayList.addToArrayAtIndex(2, 1);
-
         int expectedResult = 3;
-
         int actualResult = myArrayList.getArraySize();
-
         assertEquals(expectedResult, actualResult);
-
     }
 
     @Test
@@ -135,17 +132,14 @@ public class MyArrayListTest {
         myArrayList.addToArray(8);
         myArrayList.addToArray(8);
         myArrayList.addToArray(8);
-
         myArrayList.addToArrayAtIndex(2, 1);
 
         int expectedResult = 4;
-
         int actualResult = myArrayList.getArraySize();
-
         assertEquals(expectedResult, actualResult);
-
     }
 
+    //**
     @Test
     public void whenInsertingNumberAtSpecifiedIndexOutsideArrayBoundsArrayIncreasesDynamically(){
         MyArrayList myArrayList = new MyArrayList();
@@ -157,14 +151,14 @@ public class MyArrayListTest {
 
         myArrayList.addToArrayAtIndex(11, 8);
 
-        int[] expectedResult = {9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 8};
-        int[] actualResult = myArrayList.getAsPrimitiveArray();
+        int expectedResult = 12;
+        int actualResult = myArrayList.getArraySize();
 
-        assertArrayEquals(expectedResult, actualResult);
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
-    public void getFromArraygetsIntegerFromIndexInArray(){
+    public void getFromArrayGetsIntegerFromIndexInArray(){
         MyArrayList myArrayList = new MyArrayList();
         myArrayList.addToArray(1);
         myArrayList.addToArray(2);
@@ -176,8 +170,9 @@ public class MyArrayListTest {
         assertEquals(expectedResult, actualResult);
     }
 
+    //** Is this one specific enough?
     @Test
-    public void removeFromArrayRemovesValue(){
+    public void removeFromArrayRemovesValueFromSpecifiedIndexWithEachFollowingValueMovingDownOneIndex(){
         MyArrayList myArrayList = new MyArrayList();
         myArrayList.addToArray(1);
         myArrayList.addToArray(2);
@@ -191,10 +186,10 @@ public class MyArrayListTest {
         myArrayList.addToArray(10);
 
         myArrayList.removeIndex(2);
-        int[] expectedResult = {1, 2, 4, 5, 6, 7, 8, 9, 10, 0};
-        int[] actualResult = myArrayList.getAsPrimitiveArray();
+        int expectedResult = 4;
+        int actualResult = myArrayList.getFromArray(2);
 
-        assertArrayEquals(expectedResult, actualResult);
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
