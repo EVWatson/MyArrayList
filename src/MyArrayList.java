@@ -9,8 +9,12 @@ public class MyArrayList {
         this.arraySize = 0;
     }
 
-    public int getArraySize(){
+    public MyArrayList(int arrayCapacity){
+        this.numberArray = new int[arrayCapacity];
+        this.arraySize = 0;
+    }
 
+    public int getArraySize(){
         return this.arraySize;
     }
 
@@ -80,6 +84,20 @@ public class MyArrayList {
     public int getFromArray(int index){
         return this.numberArray[index];
     }
+
+//    public void addNumberToEachInArrayObject(int number){
+//        for (int integer : this.numberArray){
+//            System.out.println(integer);
+//        }
+//    }
+//
+//    public void addNumberToEachInArrayIndex(int number){
+//        for (int i = 0; i < this.numberArray.length; i++) {
+//            int integer = this.numberArray[i];
+//            integer = integer + number;
+//            System.out.println(integer);
+//        }
+//    }
 
 //    remove this function, get tests to pass without it. use get instead where possible.
 

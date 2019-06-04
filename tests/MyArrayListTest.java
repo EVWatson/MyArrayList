@@ -45,20 +45,11 @@ public class MyArrayListTest {
 
     @Test
     public void whenThereAreNoEmptySpacesAddToArrayDynamicallyIncreasesArrayBoundarySize(){
-        MyArrayList myArrayList = new MyArrayList();
-        myArrayList.addToArray(9);
-        myArrayList.addToArray(9);
-        myArrayList.addToArray(9);
-        myArrayList.addToArray(9);
-        myArrayList.addToArray(9);
-        myArrayList.addToArray(9);
-        myArrayList.addToArray(9);
-        myArrayList.addToArray(9);
-        myArrayList.addToArray(9);
+        MyArrayList myArrayList = new MyArrayList(1);
         myArrayList.addToArray(9);
         myArrayList.addToArray(8);
 
-        int expectedResult = 11;
+        int expectedResult = 2;
         int actualResult = myArrayList.getArraySize();
 
         assertEquals(expectedResult, actualResult);
